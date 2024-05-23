@@ -11,7 +11,7 @@
             <p class="lead mb-4">На нашем сайте вы можете воспользоваться трекером тренировок для достижения своих целей.</p>
             <hr class="my-3 w-50 mx-auto">
             <div class="d-flex justify-content-center">
-                {% if current_user.is_authenticated %}
+                {% if current_user.is_authenticated and not current_user.is_admin() %}
                 <a href="{{ url_for('main.workouts') }}" class="btn btn-primary btn-lg mr-3">Перейти к тренировкам</a>
                 {% endif %}
             </div>

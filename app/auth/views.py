@@ -94,10 +94,11 @@ def confirm(token):
     """
     if current_user.confirmed:
         flash("Ваш аккаунт уже подтвержден.")
-        return redirect(url_for('auth.login'))
+        return redirect(url_for('main.set_cookie'))
     if current_user.confirm(token):
         db.session.commit()
         flash("Ваш аккаунт был подтвержден.")
+        return redirect(url_for('main.set_cookie'))
     else:
         flash("Ссылка для подтверждения недействительна или истекла.")
     return redirect(url_for('auth.login'))
