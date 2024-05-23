@@ -21,7 +21,7 @@ def before_request():
                 not current_user.confirmed
                 and request.blueprint != 'auth'
                 and request.endpoint != 'static'
-                and not request.endpoint.endswith('confirm')
+                and request.endpoint != 'auth.confirm'
         ):
             return redirect(url_for('auth.unconfirmed'))
 
@@ -98,7 +98,7 @@ def confirm(token):
     if current_user.confirm(token):
         db.session.commit()
         flash("Ваш аккаунт был подтвержден.")
-        return redirect(url_for('main.set_cookie'))
+        return redirect(url_for('auth.login'))
     else:
         flash("Ссылка для подтверждения недействительна или истекла.")
     return redirect(url_for('auth.login'))
