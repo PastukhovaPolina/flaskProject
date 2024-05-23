@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid d-flex align-items-center justify-content-center" style="background-color: #d2e9fa; min-height: 100vh;">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+            <div class="card shadow-sm" style="max-width: 600px;">
+                <div class="card-body p-5">
+                    <h1 class="card-title mb-4 text-center" style="font-family: 'Montserrat', sans-serif; font-weight: 700; color: #000;">История тренировок</h1>
+                    <p class="card-text mb-4 text-center" style="font-family: 'Open Sans', sans-serif; color: #000;">Здесь вы можете просматривать историю ваших тренировок.</p>
+                    {% if workouts %}
+                    <div class="list-group">
+                        {% for workout in workouts %}
+                        <div class="list-group-item d-flex justify-content-between align-items-center" style="border-radius: 10px; background-color: #f5f5f5; border: none; margin-bottom: 10px;">
+                            <div>
+                                <h5 class="mb-0" style="font-family: 'Montserrat', sans-serif; font-weight: 600; color: #000;">{{ workout.name }}</h5>
+                            </div>
+                            <div>
+                                <span class="badge badge-primary badge-pill" style="font-family: 'Open Sans', sans-serif; font-size: 14px; color: #000;">{{ workout.date.strftime('%d.%m.%Y') }}</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <p class="text-center text-muted" style="font-family: 'Open Sans', sans-serif; color: #000;">У вас нет записанных тренировок.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

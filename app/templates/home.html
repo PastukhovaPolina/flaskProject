@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="background-image: url('{{ url_for('static', filename='sport.jpg') }}'); background-size: cover; min-height: 100vh;">
+    <div class="container text-black text-center">
+        <div class="jumbotron bg-transparent">
+        {% if current_user.is_authenticated %}
+        <h2>Привет, {{ current_user.username }}!</h2>
+    {% endif %}
+            <h1 class="display-4 mb-4">PlanFit - Ваш план на здоровую жизнь</h1>
+            <p class="lead mb-4">На нашем сайте вы можете воспользоваться трекером тренировок для достижения своих целей.</p>
+            <hr class="my-3 w-50 mx-auto">
+            <div class="d-flex justify-content-center">
+                {% if current_user.is_authenticated %}
+                <a href="{{ url_for('main.workouts') }}" class="btn btn-primary btn-lg mr-3">Перейти к тренировкам</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

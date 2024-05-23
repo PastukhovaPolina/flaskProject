@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="min-height: 100vh; background-color: #d2e9fa;">
+    <div class="container d-flex justify-content-center align-items-start pt-5">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h1 class="card-title mb-0">Профиль</h1>
+                </div>
+                <div class="card-body">
+                    {% if current_user.is_authenticated %}
+                        <div class="mb-3">
+                            <h5 class="card-title">Электронная почта:</h5>
+                            <p class="card-text">{{ current_user.email }}</p>
+                        </div>
+                        <div class="mb-3">
+                            <h5 class="card-title">Имя:</h5>
+                            <p class="card-text">{{ current_user.name }}</p>
+                        </div>
+                        <div class="mb-3">
+                            <h5 class="card-title">О себе:</h5>
+                            <p class="card-text">{{ current_user.about_me }}</p>
+                        </div>
+                    {% else %}
+                        <p>Пожалуйста, <a href="{{ url_for('auth.login') }}">войдите в систему</a> или <a href="{{ url_for('auth.register') }}">зарегистрируйтесь</a>, чтобы получить доступ к профилю.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

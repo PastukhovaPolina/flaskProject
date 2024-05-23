@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="background-color: #d2e9fa; min-height: 100vh;">
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h1 class="card-title mb-4">Добавить рекомендацию</h1>
+                        <form method="post">
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Заголовок</label>
+                                <input type="text" class="form-control" id="title" name="title" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Описание</label>
+                                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="date" class="form-label">Дата</label>
+                                <input type="date" class="form-control" id="date" name="date" required>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">Добавить</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

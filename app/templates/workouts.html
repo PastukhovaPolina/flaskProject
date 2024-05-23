@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="background-color: #d2e9fa; height: 100vh;">
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                {% if current_user.is_authenticated %}
+                <div class="jumbotron">
+                    <h1 class="display-4 mb-4">Тренировки</h1>
+                    <p class="lead mb-4">Здесь вы можете следить за своими тренировками и планировать новые.</p>
+                    <hr class="my-4">
+                    <form method="post" action="/add_workout">
+                        <div class="form-group">
+                            <label for="workoutName" class="form-label">Название тренировки</label>
+                            <input type="text" class="form-control" id="workoutName" name="workout_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="workoutDate" class="form-label">Дата тренировки</label>
+                            <input type="date" class="form-control" id="workoutDate" name="workout_date" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Создать</button>
+                    </form>
+                </div>
+                <div class="text-center mt-4">
+                    <a class="btn btn-secondary mr-2" href="/progress" role="button">Прогресс</a>
+                    <a class="btn btn-secondary" href="/history" role="button">История</a>
+                </div>
+                {% else %}
+                <div class="jumbotron">
+                    <h1 class="display-4 mb-4">Тренировки</h1>
+                    <p class="lead mb-4">Здесь вы можете следить за своими тренировками и планировать новые.</p>
+                    <hr class="my-4">
+                    <p>Пожалуйста, <a href="{{ url_for('auth.login') }}">войдите в систему</a> или <a href="{{ url_for('auth.register') }}">зарегистрируйтесь</a>, чтобы получить доступ к этой странице.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+

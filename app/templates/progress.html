@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid d-flex align-items-center justify-content-center" style="background-color: #d2e9fa; min-height: 100vh;">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h1 class="card-title mb-4 text-center" style="font-family: Arial, sans-serif; font-weight: bold;">Прогресс</h1>
+                    <p class="card-text" style="font-family: Arial, sans-serif;">Здесь вы можете отслеживать свой прогресс.</p>
+                    <div id='calendar' class="rounded"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            events: [
+                {% for workout in workouts %}
+                {
+                    title: '{{ workout.name }}',
+                    start: '{{ workout.date }}',
+                    allDay: true
+                },
+                {% endfor %}
+            ],
+            eventColor: '#007bff',
+            eventTextColor: '#fff',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: '',
+                right: 'title'
+            },
+            height: 'auto',
+            aspectRatio: 1.5
+        });
+        calendar.render();
+    });
+</script>
+{% endblock %}

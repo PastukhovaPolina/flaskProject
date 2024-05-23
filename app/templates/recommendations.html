@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="min-height: 100vh; background-color: #d2e9fa;">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="card-title mb-0">Рекомендации</h1>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Здесь вы можете найти рекомендации по тренировкам.</p>
+                        {% if current_user.is_authenticated %}
+                            {% if is_admin %}
+                            <div class="d-flex justify-content-end mb-3">
+                                <a class="btn btn-primary" href="/add_recommendation" role="button">Добавить</a>
+                            </div>
+                            {% endif %}
+                            <ul class="list-group">
+                                {% for recommendation in recommendations %}
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <h5 class="mb-1">{{ recommendation.title }}</h5>
+                                            <p class="mb-1">{{ recommendation.description }}</p>
+                                            <small class="text-muted">{{ recommendation.date.strftime('%d.%m.%Y') }}</small>
+                                        </div>
+                                        <small class="text-muted">Автор: {{ recommendation.user.username }}</small>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                        <p>Пожалуйста, <a href="{{ url_for('auth.login') }}">войдите в систему</a> или <a href="{{ url_for('auth.register') }}">зарегистрируйтесь</a>, чтобы получить доступ к рекомендациям.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
